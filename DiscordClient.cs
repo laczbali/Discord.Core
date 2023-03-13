@@ -6,11 +6,11 @@ namespace AlertBot.Interactions.Clients.Discord
     /// <summary>
     /// 
     /// </summary>
-    public class Client
+    public class DiscordClient
     {
-        private readonly ClientConfig config;
+        private readonly DiscordClientConfig config;
 
-        public Client(ClientConfig config)
+        public DiscordClient(DiscordClientConfig config)
         {
             this.config = config;
         }

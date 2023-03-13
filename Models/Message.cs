@@ -1,4 +1,6 @@
-﻿namespace Discord.Core.Models
+﻿using System;
+
+namespace Discord.Core.Models
 {
 	/// <summary>
 	/// See more at: https://discord.com/developers/docs/resources/channel#message-object
@@ -36,5 +38,13 @@
 		public object[] Stickers { get; set; }
 		public int Position { get; set; }
 		public object RoleSubscriptionData { get; set; }
+
+		public DateTime DateTime
+		{
+			get
+			{
+				return DateTime.Parse(this.Timestamp, null, System.Globalization.DateTimeStyles.RoundtripKind);
+			}
+		}
 	}
 }

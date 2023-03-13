@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Discord.Core.Models
@@ -9,6 +9,25 @@ namespace Discord.Core.Models
 	/// </summary>
 	public class ApplicationCommand
 	{
+		public ApplicationCommand() { }
+
+		public ApplicationCommand(
+			string name,
+			string description,
+			Func<Interaction, Task<string>> interactionHandler,
+			ApplicationCommandOption[] commandOptions = null,
+			ApplicationCommandType type = ApplicationCommandType.CHAT_INPUT)
+		{
+			Name = name;
+			Description = description;
+			Type = type;
+			InteractionHandler = interactionHandler;
+			if(commandOptions != null)
+			{
+				Options = commandOptions;
+			}
+		}
+
 		public string Id { get; set; }
 		public ApplicationCommandType Type { get; set; }
 		public string ApplicationId { get; set; }

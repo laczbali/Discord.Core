@@ -7,16 +7,16 @@ using System.Net.Http;
 
 namespace Discord.Core
 {
-    /// <summary>
-    /// Register an implementation of this class as a service,<br/>
-    /// so that you can use <see cref="RequestHandler"/><br/>
-    /// to deal with Discords interaction requests
-    /// </summary>
-    public abstract class InteractionsBase
+	/// <summary>
+	/// Register an implementation of this class as a service,<br/>
+	/// so that you can use <see cref="DiscordRequestHandler"/><br/>
+	/// to deal with Discords interaction requests
+	/// </summary>
+	public abstract class DiscordInteractionsBase
     {
-        private readonly ClientConfig config;
+        private readonly DiscordClientConfig config;
 
-        public InteractionsBase(ClientConfig config)
+        public DiscordInteractionsBase(DiscordClientConfig config)
         {
             this.config = config;
         }
@@ -74,7 +74,6 @@ namespace Discord.Core
 
             var httpClient = new HttpClientWrapper();
             await httpClient.MakeRequestAsync(url, HttpMethod.Post, command, "Bot", this.config.BotToken);
-            return;
         }
     }
 }
