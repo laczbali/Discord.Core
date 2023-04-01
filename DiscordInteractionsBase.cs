@@ -1,9 +1,6 @@
 ﻿using Discord.Core.Models;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
 using Discord.Core.Utils;
-using System.Net.Http;
+using Blaczko.Core.Wrappers;
 
 namespace Discord.Core
 {
@@ -72,8 +69,7 @@ namespace Discord.Core
         {
             var url = $"{this.config.ApiBaseUrl}/applications/{this.config.ClientId}/commands";
 
-            var httpClient = new HttpClientWrapper();
-            await httpClient.MakeRequestAsync(url, HttpMethod.Post, command, "Bot", this.config.BotToken);
+            await HttpClientWrapper.MakeRequestAsync(url, HttpMethod.Post, command.ToHttpJsonContent(), "Bot", this.config.BotToken);
         }
     }
 }

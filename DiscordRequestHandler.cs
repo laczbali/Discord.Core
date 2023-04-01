@@ -2,16 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.IO;
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Discord.Core.Utils.ED25519;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Discord.Core.Utils;
-using System.Net.Http;
+using Blaczko.Core.Wrappers;
 
 namespace Discord.Core
 {
@@ -166,8 +161,7 @@ namespace Discord.Core
             };
 
 			var url = $"{this.config.ApiBaseUrl}/webhooks/{this.config.ApplicationId}/{interactionToken}";
-			var httpClient = new HttpClientWrapper();
-            await httpClient.MakeRequestAsync(url, HttpMethod.Post, messageContent, "Bot", this.config.BotToken);
+            await HttpClientWrapper.MakeRequestAsync(url, HttpMethod.Post, messageContent.ToHttpJsonContent(), "Bot", this.config.BotToken);
 		}
 
         private bool InteractionRequestIsValid(IHeaderDictionary requestHeaders, string requestBody)
